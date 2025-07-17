@@ -68,5 +68,5 @@ Admin dapat:
 
 ## 🙈 Catatan Penutup
 Mungkin kodenya masih agak berantakan, tapi yang penting **jalan, berfungsi, dan memenuhi kebutuhan** 😄  
-Dibuat dengan penuh semangat selama 2 hari, semua request dipenuhi sebisanya. Intinya: yang penting jadi dan berfungsi sesuai kebutuhan kantor 😎  
+Dibuat dengan penuh semangat, semua request dipenuhi sebisanya. Intinya: yang penting jadi dan berfungsi sesuai kebutuhan kantor 😎  
 Kalau ada yang mau nyumbangin PR atau refactor, monggo banget 🙏
