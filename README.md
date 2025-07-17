@@ -64,7 +64,7 @@ Admin dapat:
    php artisan serve
    ```
 
-6. Login menggunakan akun admin yang telah di-seed atau dibuat secara manual.
+6. Login menggunakan akun admin yang telah di migrate. (admin@mail.com/12341234)
 
 ## 🙈 Catatan Penutup
 Mungkin kodenya masih agak berantakan, tapi yang penting **jalan, berfungsi, dan memenuhi kebutuhan** 😄  
