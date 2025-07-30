@@ -48,6 +48,7 @@ class MainDataController extends Controller
             $request->validate([
                 'nama' => 'required|string',
                 'id_num' => 'required|numeric|unique:MainData,id_num',
+                'id_fwc' => 'nullable|string|unique:MainData,id_fwc',
                 'relasi_fwc' => 'required|in:01,02,03',
                 'jenis_fwc' => 'required|in:G,S',
                 'email' => 'nullable|email',
@@ -55,20 +56,20 @@ class MainDataController extends Controller
             ]);
 
             $tgl = now();
-            $tglKode = $tgl->format('dmy');
+            $tglKode = $tgl->format(format: 'dmy');
             $jenis = $request->jenis_fwc;
             $relasi = $request->relasi_fwc;
 
             $count = MainData::whereDate('tgl_reg', $tgl)->count() + 1;
             $urutan = str_pad($count, 3, '0', STR_PAD_LEFT);
 
-            $id_fwc = $jenis . $relasi . $tglKode . $urutan;
+            // $id_fwc = $jenis . $relasi . $tglKode . $urutan;
 
             $tgl_exp = $jenis === 'G' ? $tgl->copy()->addDays(60) : $tgl->copy()->addDays(30);
             $kuota = $jenis === 'G' ? 10 : 6;
 
             $newData = MainData::create([
-                'id_fwc' => $id_fwc,
+                'id_fwc' => $request->id_fwc,
                 'nama' => $request->nama,
                 'id_num' => $request->id_num,
                 'email' => $request->email,

@@ -46,6 +46,14 @@
                 <form method="POST" action="{{ route('fwc.store') }}">
                     @csrf
 
+                    <!-- ID FWC -->
+                    <div class="mb-4">
+                        <x-input-label for="id_fwc" :value="__('ID FWC')" />
+                        <x-text-input id="id_fwc" name="id_fwc" type="text" class="mt-1 block w-full"
+                            :value="old('id_fwc')" />
+                        <x-input-error :messages="$errors->get('id_fwc')" class="mt-2" />
+                    </div>
+
                     <!-- Nama -->
                     <div class="mb-4">
                         <x-input-label for="nama" :value="__('Nama')" />

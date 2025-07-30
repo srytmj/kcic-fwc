@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
+use Carbon\Carbon;
 
 return new class extends Migration {
     /**
@@ -88,6 +90,31 @@ return new class extends Migration {
             'created_at' => now(),
             'updated_at' => now(), // This is the redeem date
         ]);
+
+        $faker = Faker::create();
+
+        $batchSize = 5000;
+        $data = [];
+
+        for ($i = 0; $i < $batchSize; $i++) {
+            $regDate = Carbon::now()->subDays(rand(0, 30)); // Random registration date in the past 30 days
+            $expDate = (clone $regDate)->addDays(60);
+
+            $data[] = [
+                'id_fwc' => str_pad($i + 1, 9, '0', STR_PAD_LEFT),
+                'nama' => $faker->name,
+                'id_num' => $faker->numerify('##########'),
+                'email' => $faker->safeEmail,
+                'no_hp' => $faker->phoneNumber,
+                'tgl_reg' => $regDate,
+                'tgl_exp' => $expDate,
+                'relasi_fwc' => $faker->randomElement(['01', '02', '03']),
+                'jenis_fwc' => 'G',
+                'kuota' => rand(1, 20),
+            ];
+        }
+
+        DB::table('maindata')->insert($data);
     }
 
     /**
